@@ -23,7 +23,7 @@ jobs:
           if [[ "${{ github.event_name }}" == "release" ]]; then
             TAG="${GITHUB_REF_NAME}"
           else
-            TAG=$(gh release list --limit 1 -L 1 -q '.[0].tagName')
+            TAG=$(gh release list --limit 1 --json tagName -q '.[0].tagName')
             if [[ -z "$TAG" ]]; then
               echo "No release found"
               exit 1
