@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>下载应用</title>
+  <style>
+    body { font-family: system-ui; max-width: 600px; margin: 80px auto; padding: 0 20px; }
+    .download-btn { display: inline-block; padding: 12px 24px; background: #0078d4; color: #fff;
+      text-decoration: none; border-radius: 8px; font-size: 16px; margin-top: 20px; }
+    .download-btn:hover { background: #005a9e; }
+    .proxy-toggle { margin-top: 16px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>下载应用</h1>
+  <p>v1.0.0</p>
+  <div class="proxy-toggle">
+    <label><input type="checkbox" id="proxy"> 启用下载加速代理</label>
+    <p style="font-size:12px;color:#666">解决 GitHub 下载慢/失败问题</p>
+  </div>
+  <a id="dl" class="download-btn" href="#">Windows 安装包</a>
+  <script>
+    const GITHUB_DL = 'https://github.com/你的用户名/仓库名/releases/download/v1.0.0/你的文件名.exe'
+    const PROXY = 'https://v4.gh-proxy.org/'
+    const cb = document.getElementById('proxy')
+    const a = document.getElementById('dl')
+    function update() { a.href = cb.checked ? PROXY + GITHUB_DL : GITHUB_DL }
+    update()
+    cb.addEventListener('change', update)
+  </script>
+</body>
+</html>
